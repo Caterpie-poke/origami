@@ -16,7 +16,7 @@ Tree               = SimpleTree
 String             = String
 
 Byte->Int          = (%s).toInt()
-#String->Byte
+String->Byte[]     = (%s).toByteArray()
 Int64->Int         = (%s).toInt()
 Int->Int64         = (%s).toLong()
 
@@ -40,6 +40,9 @@ Option.get         = %s!!
 Option.isNone      = (%s==null)
 
 Array.new          = arrayOf()
+Array.size         = %s.count()
+
+
 
 unsigned           = %s & 0xff
 keyindex           = ($|Int|)(%s)
@@ -166,7 +169,7 @@ main = '''
   fun readInputs(a:String):ByteArray {
     var file:File = File(a)
     if(file.exists()) {
-      var buf:ByteArray = byteArrayOf(((file.length())+1).toInt())  // adding '\0' termination
+      var buf:ByteArray = ByteArray(((file.length())+1).toInt())  // adding '\0' termination
       var fin:FileInputStream = FileInputStream(file)
       fin.read(buf, 0, file.length().toInt())
       return buf
